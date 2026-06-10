@@ -1,4 +1,4 @@
-export default function Welcome() {
+export default function Welcome({onStartAddProject}) {
     return (
         <div className="flex-1 min-h-screen w-full bg-cover bg-center relative" 
              style={{ backgroundImage: "url('japanese-bg.png" }}>
@@ -23,7 +23,7 @@ export default function Welcome() {
                         Your projects, your team, your success. All in one beautifully organized place. Select a project from the sidebar or build a new foundation.
                     </p>
                     <div>
-                        <button className="px-6 py-3 bg-blue-950 text-slate-100 font-medium text-sm rounded-lg shadow-lg hover:bg-rose-800 transition-all duration-300 hover:scale-[1.02]">
+                        <button className="px-6 py-3 bg-blue-950 text-slate-100 font-medium text-sm rounded-lg shadow-lg hover:bg-rose-800 transition-all duration-300 hover:scale-[1.02]" onClick={onStartAddProject}>
                             Create New Project
                         </button>
                     </div>
