@@ -1,4 +1,6 @@
-export default function SelectedProject({ project, onDelete }) {
+import Tasks from "./Tasks.jsx";
+
+export default function SelectedProject({ project, onDelete, onAddTask, onDeleteTask , tasks}) {
     const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
@@ -34,16 +36,7 @@ export default function SelectedProject({ project, onDelete }) {
                 </header>
 
                 {/* Tasks Workflow Management Section Anchor */}
-                <div className="mt-8">
-                    <h2 className="text-2xl font-bold text-slate-800 mb-4 tracking-tight">
-                        Tasks
-                    </h2>
-                    {/* Task implementation logic will go right here! */}
-                    <p className="text-sm text-slate-400 italic">
-                        No tasks created for this project yet.
-                    </p>
-                </div>
-
+                <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
             </main>
         </div>
     );
