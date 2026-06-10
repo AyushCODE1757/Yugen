@@ -25,13 +25,21 @@ function App() {
         ...prevState,
         selectedProjectId: undefined,
         projects: [...prevState.projects, newProject]
-      }
+      };
     })
 
   }
+  function handleCancelAddProject() {
+    setProjectsState(prevState => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+      }
+    });
+  }
   let content = <Welcome onStartAddProject={handleStartAddProject}/>;
   if (projectsState.selectedProjectId === null){
-    content = <NewProject onAddProject={handleAddProject}/>
+    content = <NewProject onAddProject={handleAddProject} onCancel={handleCancelAddProject}/>
   }
   return <main className="flex w-screen min-h-screen overflow-hidden">
     <Sidebar onStartAddProject={handleStartAddProject} projects={projectsState.projects}/>
