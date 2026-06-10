@@ -1,5 +1,21 @@
+import { useRef } from "react"
 import Input from "./Input.jsx"
-export default function NewProject(){
+export default function NewProject({onAddProject}){
+    const titleInp = useRef();
+    const descInp = useRef();
+    const dateInp = useRef();
+    function handleSave(){
+        const enteredTitle = titleInp.current.value;
+        const enteredDesc = descInp.current.value;
+        const enteredDate = dateInp.current.value;
+        
+        //validation... 
+        onAddProject({
+            title: enteredTitle,
+            desc: enteredDesc,
+            dueDate: enteredDate
+        });
+    }
     return(
         <div className="flex min-h-screen bg-slate-50">
             <main className="flex-1 p-10">
@@ -11,15 +27,16 @@ export default function NewProject(){
                         </li> 
                         <li className="list-none">
                             <button className="px-4 py-2 bg-blue-950 text-slate-100 rounded-lg text-sm font-medium hover:bg-blue-800 shadow-sm transition-all"
+                            onClick={handleSave}
                             >Save</button>
                         </li> 
                     </menu>
                 </div>
                
                 <div className="max-w-4xl w-full"> 
-                    <Input label="Title" type="text" placeholder="Enter Project Name....."/>
-                    <Input label="Description" textArea rows="5" placeholder="What is this project?"/>
-                    <Input label="DueDate" type="date"/>
+                    <Input label="Title" type="text" placeholder="Enter Project Name....." ref={titleInp}/>
+                    <Input label="Description" textArea rows="5" placeholder="What is this project?" ref={descInp}/>
+                    <Input label="DueDate" type="date" ref={dateInp}/>
                 </div>     
             </main>
             

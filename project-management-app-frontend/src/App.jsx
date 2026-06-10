@@ -1,4 +1,3 @@
-// import NewProject from "./components/NewProject.jsx"
 import { useState } from "react"
 import Sidebar from "./components/Sidebar.jsx"
 import Welcome from "./components/Welcome.jsx"
@@ -16,12 +15,26 @@ function App() {
       }
     });
   }
+  function handleAddProject(projectData) {
+    setProjectsState(prevState => {
+      const newProject = {
+        ...projectData,
+        id: Math.random()
+      }
+      return{
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: [...prevState.projects, newProject]
+      }
+    })
+
+  }
   let content = <Welcome onStartAddProject={handleStartAddProject}/>;
   if (projectsState.selectedProjectId === null){
-    content = <NewProject />
+    content = <NewProject onAddProject={handleAddProject}/>
   }
   return <main className="flex w-screen min-h-screen overflow-hidden">
-    <Sidebar onStartAddProject={handleStartAddProject}/>
+    <Sidebar onStartAddProject={handleStartAddProject} projects={projectsState.projects}/>
     {content}
   </main>
 }

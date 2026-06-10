@@ -1,5 +1,5 @@
 import Link from "./Link.jsx";
-export default function Sidebar({onStartAddProject}){
+export default function Sidebar({onStartAddProject, projects}){
     return( 
     <div className="flex flex-col w-64 h-screen justify-between bg-blue-950 border-b-cyan-900 border-r border-slate-900">
         <div className="flex items-center p-4">
@@ -10,9 +10,7 @@ export default function Sidebar({onStartAddProject}){
             <button className="w-full p-3 bg-slate-300 rounded-lg font-medium text-blue-900 transition-all duration-300 hover:ring-4 hover:ring-emerald-400/40 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-lg shdow-md hover:bg-red-100" onClick={onStartAddProject}>+Add Project</button>
         </div>
         <nav className="flex-1 overflow-y-auto">
-            <Link>Project1</Link>
-            <Link>Project2</Link>
-            <Link>Project3</Link>
+            {projects.map(project => <Link key={project.id}>{project.title}</Link>)}
         </nav>
         <div className="border-t border-blue-900 p-3">
             <div className="flex items-center">
